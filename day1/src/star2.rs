@@ -20,6 +20,5 @@ pub fn star2() {
     }
     lista.sort();
     
-
     println!("{}", lista.pop().unwrap() + lista.pop().unwrap() + lista.pop().unwrap());
 }
