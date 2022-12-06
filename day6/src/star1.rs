@@ -2,10 +2,7 @@ use std::collections::HashSet;
 
 pub fn star1() {
     let mut _data = include_str!("in_2.txt").chars();
-    let mut possible_marker: Vec<char> = vec![];
-    for _i in 0..4 {
-        possible_marker.push(_data.next().unwrap())
-    }
+    let mut possible_marker: Vec<char> = _data.clone().take(4).collect();
     while possible_marker
         .clone()
         .into_iter()
@@ -16,8 +13,5 @@ pub fn star1() {
         possible_marker.remove(0);
         possible_marker.push(_data.next().unwrap());
     }
-    let binding = possible_marker.iter().collect::<String>();
-    let strin = binding.as_str();
-    dbg!(strin);
-    dbg!(include_str!("in_2.txt").find(strin).unwrap() + 4);
+    dbg!(include_str!("in_2.txt").len() - _data.count());
 }
