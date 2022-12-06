@@ -8,7 +8,7 @@ pub fn star2() {
         .into_iter()
         .collect::<HashSet<char>>()
         .len()
-        < 4
+        < 14
     {
         possible_marker.remove(0);
         possible_marker.push(_data.next().unwrap());
