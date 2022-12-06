@@ -8,11 +8,11 @@ pub fn star1() {
     for i in 2..*len {
         if (i - 2) % 4 == 0 {
             stacks.push(vec![]);
-            _data.clone().into_iter().for_each(|j|
+            _data.clone().into_iter().for_each(|j| {
                 if j.chars().nth(i - 1).unwrap() != ' ' {
                     stacks[(i - 2) / 4].push(j.chars().nth(i - 1).unwrap());
                 }
-            )
+            })
         }
     }
     let mut stacks: Vec<Vec<char>> = stacks
