@@ -60,13 +60,13 @@ pub fn star2(){
 
     let mut groups: Vec<Vec<&str>> = vec![];
     let mut group: Vec<&str> = vec![];
-    for i in 0..data.len() {
-        group.push(data[i]);
+    data.iter().enumerate().for_each(|(i, l)|{
+        group.push(l);
         if i%3 == 2 {
-            groups.push(group);
+            groups.push(group.clone());
             group = vec![];
         }
-    }
+    });
     let ans = groups.into_iter()
         .map(|group| *my_map.get(group[0].chars()
         .filter(|c| group[1].contains(*c) && group[2].contains(*c))

@@ -1,8 +1,7 @@
-use std::{collections::HashMap};
+use std::collections::HashMap;
 
-pub fn star1(){
-    let data:Vec<&str> = include_str!("in_2.txt").lines().collect();
-    let my_map:HashMap<char, i32> = HashMap::from([
+pub fn star1() {
+    let my_map: HashMap<char, i32> = HashMap::from([
         ('a', 1),
         ('b', 2),
         ('c', 3),
@@ -57,10 +56,20 @@ pub fn star1(){
         ('Z', 26 + 26),
     ]);
 
-    let rug: Vec<(&str, &str)> = data.into_iter().map(|rug| rug.split_at(rug.len() / 2)).collect();
-    let ans = rug.into_iter()
-        .map(|(str1, str2)| *my_map.get(str1.chars()
-        .filter(|c| str2.contains(*c)).collect::<Vec<char>>().first().unwrap()).unwrap())
+    let ans = include_str!("in_2.txt")
+        .lines()
+        .map(|rug| rug.split_at(rug.len() / 2))
+        .map(|(str1, str2)| {
+            *my_map
+                .get(
+                    str1.chars()
+                        .filter(|c| str2.contains(*c))
+                        .collect::<Vec<char>>()
+                        .first()
+                        .unwrap(),
+                )
+                .unwrap()
+        })
         .sum::<i32>();
     println!("{}", ans)
 }

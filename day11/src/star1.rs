@@ -1,4 +1,3 @@
-
 pub fn star1() {
     let _data = include_str!("in_2.txt")
         .split("\r\n\r\n")
@@ -26,11 +25,11 @@ pub fn star1() {
             let items: Vec<usize> = iter_lines
                 .next()
                 .unwrap()
-                .split(" ")
+                .split(' ')
                 .into_iter()
                 .map(|num| num.parse::<usize>().unwrap())
                 .collect();
-            let (op, op_value) = iter_lines.next().unwrap().split_once(" ").unwrap();
+            let (op, op_value) = iter_lines.next().unwrap().split_once(' ').unwrap();
             let opperation;
             let opperation_value;
             if op_value == "old" {
@@ -56,7 +55,7 @@ pub fn star1() {
             }
         })
         .collect();
-    let LCM: usize = monkeys.iter().map(|m| m.div_by).product();
+    let lcm: usize = monkeys.iter().map(|m| m.div_by).product();
     let mut inspects = vec![];
     monkeys.iter().for_each(|_| inspects.push(0));
     (0..10000).into_iter().for_each(|_| {
@@ -70,7 +69,7 @@ pub fn star1() {
                     Opperation::Pow => item = item * item,
                     Opperation::Mul => item *= &monkey.opperation_value,
                 }
-                item %= LCM;
+                item %= lcm;
                 if item % monkey.div_by == 0 {
                     monkeys[monkey.trow_if_true].items.push(item);
                 } else {

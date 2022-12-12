@@ -10,26 +10,26 @@ pub fn star1() {
     let mut biggest_left: Vec<u32> = vec![];
     let mut set: HashSet<(usize, usize , u32)> = HashSet::new();
     _data.iter().for_each(|l| biggest_left.push(l[0]));
-    for i in 0..biggest_left.len() {
+    biggest_left.iter().enumerate().for_each(|(i, _)| {
         for j in 0..biggest_top.len() {
             if i == 0 || j == 0 || i == biggest_left.len() - 1 || j == biggest_top.len() - 1 {
                 let d = _data[i][j];
                 set.insert((j, i, d));
             }
         }
-    }
+    });
     for i in 0..biggest_left.len() {
-        for j in 0..biggest_top.len() {
+        biggest_top.iter_mut().enumerate().for_each(|(j, b_t)| {
             let d = _data[i][j];
             if d > biggest_left[i] {
                 set.insert((j, i, d));
                 biggest_left[i] = d;
             }
-            if d > biggest_top[j] {
+            if d > *b_t {
                 set.insert((j, i, d));
-                biggest_top[j] = d;
+                *b_t = d;
             }
-        }
+        });
     }
     let mut biggest_bottom: Vec<u32> = _data.last().unwrap().clone();
     let mut biggest_right: Vec<u32> = vec![];

@@ -7,7 +7,7 @@ pub fn star2() {
     file.read_to_string(&mut data)
     .expect("Error while reading file");
 
-    let elves: Vec<&str> = data.split("\n").collect();
+    let elves: Vec<&str> = data.split('\n').collect();
     let mut num = 0;
     let mut lista:Vec<i32> = Vec::new();
     for i in elves {

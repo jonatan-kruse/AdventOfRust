@@ -6,7 +6,7 @@ pub fn star2() {
         .map(|l| l.chars().map(|d| d.to_digit(10).unwrap()).collect())
         .collect();
 
-    let mut biggest_top: Vec<u32> = _data[0].clone();
+    let biggest_top: Vec<u32> = _data[0].clone();
     let mut biggest_left: Vec<u32> = vec![];
     let mut set: HashSet<i32> = HashSet::new();
     _data.iter().for_each(|l| biggest_left.push(l[0]));
@@ -24,25 +24,25 @@ pub fn star2() {
             loop {
                 if i as i32 - a < 0 { break;}
                 up += 1;
-                if _data[(i as i32 - a) as usize][j] >= d.try_into().unwrap() { break;}
+                if _data[(i as i32 - a) as usize][j] >= d { break;}
                 a += 1;
             }
             loop {
                 if i as i32 + b > (_data.len() - 1).try_into().unwrap() { break;}
                 down += 1;
-                if _data[(i as i32 + b) as usize][j] >= d.try_into().unwrap() { break;}
+                if _data[(i as i32 + b) as usize][j] >= d { break;}
                 b += 1;
             }
             loop {
                 if j as i32 - c < 0 { break;}
                 left += 1;
-                if _data[i][(j as i32 - c) as usize] >= d.try_into().unwrap() { break;}
+                if _data[i][(j as i32 - c) as usize] >= d { break;}
                 c += 1;
             }
             loop {
                 if j as i32 + e > (_data.len() - 1).try_into().unwrap() { break;}
                 right += 1;
-                if _data[i][(j as i32 + e) as usize] >= d.try_into().unwrap() { break;}
+                if _data[i][(j as i32 + e) as usize] >= d { break;}
                 e += 1;
             }
             //println!("x: {}, y: {}, score: {}", j, i, up * down * right * left);
