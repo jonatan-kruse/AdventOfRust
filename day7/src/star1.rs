@@ -1,3 +1,23 @@
+use std::{str::{ Split}, borrow::BorrowMut};
+
 pub fn star1() {
-    let _data:Vec<&str> = include_str!("in_1.txt").lines().collect();
+    let mut _data = include_str!("in_2.txt").split('\n');
+    let mut sizes: Vec<i32> = vec![];
+    fn evaluate(lines: &mut Split<char>, sizes: &mut Vec<i32>) -> i32 {
+        let mut temp = 0;
+        while let Some(l) = lines.next() {
+            if l.contains("$ cd .."){
+                sizes.push(temp);
+                return temp;
+            } else if l.contains("$ cd") {
+                temp += evaluate(lines, sizes);
+            }else if !l.contains("$ ls") && !l.contains("dir ") {
+                let (left, _) = l.split_once(' ').unwrap();
+                temp += left.parse::<i32>().unwrap();
+            }
+        }
+        temp
+    }
+    evaluate(_data.borrow_mut(), &mut sizes);
+    dbg!(sizes.iter().filter(|x| x < &&100000).sum::<i32>());
 }
